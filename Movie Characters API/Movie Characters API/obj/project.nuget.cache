@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "2NfM1qrGvFIA7WiFHOuxtRBoLX96+xF0WXRkrC3w+vTq4fyfQTErjd2mTomzTrrDHchpUxmH+grFKKNqs/XYRQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\SteTom\\git\\Noroff\\Back-end\\Lessons\\Movie Characters API\\Movie Characters API\\Movie Characters API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\SteTom\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\SteTom\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\SteTom\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\SteTom\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\SteTom\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\SteTom\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
