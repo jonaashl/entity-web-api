@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Franchise_Characters_API.Models;
+using Movie_Characters_API.Services.Franchises;
 using Movie_Characters_API.Models;
 
 namespace Movie_Characters_API.Controllers
@@ -13,30 +10,24 @@ namespace Movie_Characters_API.Controllers
     [ApiController]
     public class FranchisesController : ControllerBase
     {
-        private readonly MovieCharactersDbContext _context;
+        private readonly IFranchiseService _franchiseService;
 
-        public FranchisesController(MovieCharactersDbContext context)
+        public FranchisesController(IFranchiseService franchiseService)
         {
-            _context = context;
+            _franchiseService = franchiseService;
         }
 
         // GET: api/Franchises
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Franchise>>> GetFranchises()
-        {
-            return await _context.Franchises.ToListAsync();
-        }
+        public async Task<ActionResult<IEnumerable<Franchise>>> GetFranchises() => Ok(await _franchiseService.GetAllAsync());
 
         // GET: api/Franchises/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Franchise>> GetFranchise(int id)
         {
-            var franchise = await _context.Franchises.FindAsync(id);
+            var franchise = Ok(await _franchiseService.GetByIdAsync(id));
 
-            if (franchise == null)
-            {
-                return NotFound();
-            }
+            if (franchise == null) return NotFound();
 
             return franchise;
         }
@@ -51,23 +42,7 @@ namespace Movie_Characters_API.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(franchise).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!FranchiseExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _franchiseService.UpdateAsync(franchise);
 
             return NoContent();
         }
@@ -77,31 +52,9 @@ namespace Movie_Characters_API.Controllers
         [HttpPost]
         public async Task<ActionResult<Franchise>> PostFranchise(Franchise franchise)
         {
-            _context.Franchises.Add(franchise);
-            await _context.SaveChangesAsync();
+            await _franchiseService.AddAsync(franchise);
 
             return CreatedAtAction("GetFranchise", new { id = franchise.Id }, franchise);
-        }
-
-        // DELETE: api/Franchises/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteFranchise(int id)
-        {
-            var franchise = await _context.Franchises.FindAsync(id);
-            if (franchise == null)
-            {
-                return NotFound();
-            }
-
-            _context.Franchises.Remove(franchise);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool FranchiseExists(int id)
-        {
-            return _context.Franchises.Any(e => e.Id == id);
         }
     }
 }
