@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Movie_Characters_API.Models;
+using Movie_Characters_API.Services.Characters;
 
 namespace Movie_Characters_API.Controllers
 {
@@ -14,10 +15,11 @@ namespace Movie_Characters_API.Controllers
     public class CharactersController : ControllerBase
     {
         private readonly MovieCharactersDbContext _context;
+        private readonly ICharacterService _characterService;
 
-        public CharactersController(MovieCharactersDbContext context)
+        public CharactersController(ICharacterService characterService)
         {
-            _context = context;
+            _characterService = characterService;
         }
 
         // GET: api/Characters

@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Movie_Characters_API.Models;
+using Movie_Characters_API.Services.Characters;
+using Movie_Characters_API.Services.Franchises;
+using Movie_Characters_API.Services.Movies;
 
 namespace Movie_Characters_API
 {
@@ -15,6 +18,10 @@ namespace Movie_Characters_API
             builder.Services.AddControllers();
             builder.Services.AddDbContext<MovieCharactersDbContext>(
                 opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("steffen")));
+            builder.Services.AddScoped<IMovieService, MovieService>();
+            builder.Services.AddScoped<ICharacterService, CharacterService>();
+            builder.Services.AddScoped<IFranchiseService, FranchiseService>();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
