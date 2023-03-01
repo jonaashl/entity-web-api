@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
 using Movie_Characters_API.Models;
 using Movie_Characters_API.Services.Movies;
 
@@ -14,7 +8,6 @@ namespace Movie_Characters_API.Controllers
     [ApiController]
     public class MoviesController : ControllerBase
     {
-        private readonly MovieCharactersDbContext _context;
         private readonly IMovieService _movieService;
 
         public MoviesController(IMovieService movieService)
@@ -24,21 +17,15 @@ namespace Movie_Characters_API.Controllers
 
         // GET: api/Movies
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Movie>>> GetMovies()
-        {
-            return await _context.Movies.ToListAsync();
-        }
+        public async Task<ActionResult<IEnumerable<Movie>>> GetMovies() => Ok(await _movieService.GetAllAsync());
 
         // GET: api/Movies/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Movie>> GetMovie(int id)
         {
-            var movie = await _context.Movies.FindAsync(id);
+            var movie = Ok(await _movieService.GetByIdAsync(id));
 
-            if (movie == null)
-            {
-                return NotFound();
-            }
+            if (movie == null) return NotFound();
 
             return movie;
         }
@@ -53,23 +40,7 @@ namespace Movie_Characters_API.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(movie).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!MovieExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _movieService.UpdateAsync(movie);
 
             return NoContent();
         }
@@ -79,31 +50,9 @@ namespace Movie_Characters_API.Controllers
         [HttpPost]
         public async Task<ActionResult<Movie>> PostMovie(Movie movie)
         {
-            _context.Movies.Add(movie);
-            await _context.SaveChangesAsync();
+            await _movieService.AddAsync(movie);
 
             return CreatedAtAction("GetMovie", new { id = movie.Id }, movie);
-        }
-
-        // DELETE: api/Movies/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMovie(int id)
-        {
-            var movie = await _context.Movies.FindAsync(id);
-            if (movie == null)
-            {
-                return NotFound();
-            }
-
-            _context.Movies.Remove(movie);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool MovieExists(int id)
-        {
-            return _context.Movies.Any(e => e.Id == id);
         }
     }
 }

@@ -16,12 +16,12 @@ namespace Movie_Characters_API.Services.Franchises
             throw new NotImplementedException();
         }
 
-        public void DeleteAsync(int id)
+        public void Delete(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ICollection<Franchise>> GetAllAsync()
+        public Task<IEnumerable<Franchise>> GetAllAsync()
         {
             throw new NotImplementedException();
         }

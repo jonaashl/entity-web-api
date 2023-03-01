@@ -12,9 +12,6 @@ namespace Movie_Characters_API.Models
         public virtual DbSet<Franchise> Franchises { get; set; } = null!;
         public virtual DbSet<Movie> Movies { get; set; } = null!;
 
-
-
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Movie>().HasData(
