@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\SteTom\\git\\Assignments\\back-end-assignment-3\\Movie Characters API\\Movie Characters API.csproj": {}
+    "C:\\Users\\JLinde\\Noroff\\Backend\\dotnetAssignments\\back-end-assignment-3\\Movie Characters API\\Movie Characters API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\SteTom\\git\\Assignments\\back-end-assignment-3\\Movie Characters API\\Movie Characters API.csproj": {
+    "C:\\Users\\JLinde\\Noroff\\Backend\\dotnetAssignments\\back-end-assignment-3\\Movie Characters API\\Movie Characters API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\SteTom\\git\\Assignments\\back-end-assignment-3\\Movie Characters API\\Movie Characters API.csproj",
+        "projectUniqueName": "C:\\Users\\JLinde\\Noroff\\Backend\\dotnetAssignments\\back-end-assignment-3\\Movie Characters API\\Movie Characters API.csproj",
         "projectName": "Movie Characters API",
-        "projectPath": "C:\\Users\\SteTom\\git\\Assignments\\back-end-assignment-3\\Movie Characters API\\Movie Characters API.csproj",
-        "packagesPath": "C:\\Users\\SteTom\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SteTom\\git\\Assignments\\back-end-assignment-3\\Movie Characters API\\obj\\",
+        "projectPath": "C:\\Users\\JLinde\\Noroff\\Backend\\dotnetAssignments\\back-end-assignment-3\\Movie Characters API\\Movie Characters API.csproj",
+        "packagesPath": "C:\\Users\\JLinde\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\JLinde\\Noroff\\Backend\\dotnetAssignments\\back-end-assignment-3\\Movie Characters API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\SteTom\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\JLinde\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,6 +55,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.3, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.12, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
