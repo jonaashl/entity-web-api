@@ -1,4 +1,5 @@
-﻿using Movie_Characters_API.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Movie_Characters_API.Models;
 
 namespace Movie_Characters_API.Services.Characters
 {
@@ -11,9 +12,11 @@ namespace Movie_Characters_API.Services.Characters
             _context = context;
         }
 
-        public Task<Character> AddAsync(Character entity)
+        public async Task<Character> AddAsync(Character entity)
         {
-            throw new NotImplementedException();
+            await _context.Characters.AddAsync(entity);
+            await _context.SaveChangesAsync();
+            return entity;
         }
 
         public void Delete(int id)
@@ -21,19 +24,15 @@ namespace Movie_Characters_API.Services.Characters
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Character>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<IEnumerable<Character>> GetAllAsync() => await _context.Characters.ToListAsync();
 
-        public Task<Character> GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<Character> GetByIdAsync(int id) => await _context.Characters.FindAsync(id);
 
-        public Task<Character> UpdateAsync(Character entity)
+        public async Task<Character> UpdateAsync(Character entity)
         {
-            throw new NotImplementedException();
+            _context.Entry(entity).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return entity;
         }
     }
 }
