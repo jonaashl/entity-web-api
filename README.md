@@ -3,9 +3,9 @@
 
 > Web API with Entity framework.
 
-<img src="/assignment3CSHARPer.png" alt="dynamic duo" width=30% heigh=30% />
+<img src="/assignment3CSHARPer.png" alt="dynamic duo" width=50% heigh=50% />
 
-### 🏠 [Gitlab Homepage](https://gitlab.com/jonashl/backend-assignment-2)
+### 🏠 [Gitlab Homepage](https://gitlab.com/jonashl/backend-assignment-3)
 
 
 ## Usage
