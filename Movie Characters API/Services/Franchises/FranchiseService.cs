@@ -26,13 +26,30 @@ namespace Movie_Characters_API.Services.Franchises
 
         public async Task<IEnumerable<Franchise>> GetAllAsync() => await _context.Franchises.ToListAsync();
 
-        public async Task<Franchise> GetByIdAsync(int id) => await _context.Franchises.FindAsync(id);
+        public async Task<Franchise?> GetByIdAsync(int id) => await _context.Franchises.FindAsync(id);
 
         public async Task<Franchise> UpdateAsync(Franchise entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return entity;
+        }
+
+        public async Task UpdateMoviesInFranchiseAsync(int franchiseId, int[] movieIds)
+        {
+            // Get the movie from the database
+            var franchise = await _context.Franchises.FindAsync(franchiseId) ?? throw new Exception("No franchise with that ID.");
+
+            List<Movie> movies = movieIds
+                .ToList()
+                .Select(movieIds => _context.Movies
+                .Where(m => m.Id == movieIds).First())
+                .ToList();
+
+            franchise.Movies = movies;
+            _context.Entry(franchise).State = EntityState.Modified;
+
+            await _context.SaveChangesAsync();
         }
     }
 }
