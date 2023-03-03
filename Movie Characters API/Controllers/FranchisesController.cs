@@ -59,17 +59,17 @@ namespace Movie_Characters_API.Controllers
         // GET: api/franchises/5/movies
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpGet("{id}/movies")]
-        public async Task<ActionResult<IEnumerable<Movie>>> GetMoviesInFranchise(int franchiseId)
+        public async Task<ActionResult<IEnumerable<Movie>>> GetMoviesInFranchise(int id)
         {
-            return Ok(await _franchiseService.GetMoviesInFranchiseAsync(franchiseId));
+            return Ok(await _franchiseService.GetMoviesInFranchiseAsync(id));
         }
 
         // GET: api/franchises/5/characters
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpGet("{id}/characters")]
-        public async Task<ActionResult<IEnumerable<Character>>> GetCharactersInFranchise(int franchiseId)
+        public async Task<ActionResult<IEnumerable<Character>>> GetCharactersInFranchise(int id)
         {
-            return Ok(await _franchiseService.GetCharactersInFranchiseAsync(franchiseId));
+            return Ok(await _franchiseService.GetCharactersInFranchiseAsync(id));
         }
 
         // PUT: api/franchises/5/movies

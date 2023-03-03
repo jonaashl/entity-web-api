@@ -55,9 +55,9 @@ namespace Movie_Characters_API.Controllers
         // GET: api/movies/5/characters
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpGet("{id}/characters")]
-        public async Task<ActionResult<IEnumerable<Character>>> GetCharactersInMovie(int movieId)
+        public async Task<ActionResult<IEnumerable<Character>>> GetCharactersInMovie(int id)
         {
-            return Ok(await _movieService.GetCharactersInMovieAsync(movieId));
+            return Ok(await _movieService.GetCharactersInMovieAsync(id));
         }
 
         // PUT: api/movies/5/characters
