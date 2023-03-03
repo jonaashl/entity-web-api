@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Movie_Characters_API.Services.Franchises;
 using Movie_Characters_API.Models;
 using System.Net.Mime;
+using Movie_Characters_API.Services.Franchises;
 
 namespace Movie_Characters_API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/franchises")]
     [ApiController]
     [ApiConventionType(typeof(DefaultApiConventions))]
     [Produces(MediaTypeNames.Application.Json)]
@@ -20,7 +20,7 @@ namespace Movie_Characters_API.Controllers
             _franchiseService = franchiseService;
         }
 
-        // GET: api/Franchises
+        // GET: api/franchises
         /// <summary>
         /// Get all franchises in the database
         /// </summary>
@@ -28,7 +28,7 @@ namespace Movie_Characters_API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Franchise>>> GetFranchises() => Ok(await _franchiseService.GetAllAsync());
 
-        // GET: api/Franchises/5
+        // GET: api/franchises/5
         /// <summary>
         /// Get a specific database by their Id
         /// </summary>
@@ -44,7 +44,7 @@ namespace Movie_Characters_API.Controllers
             return franchise;
         }
 
-        // PUT: api/Franchises/5
+        // PUT: api/franchises/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         /// <summary>
         /// Update / Override a franchise in the database
@@ -65,7 +65,7 @@ namespace Movie_Characters_API.Controllers
             return NoContent();
         }
 
-        // POST: api/Franchises
+        // POST: api/franchises
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         /// <summary>
         /// Add a new franchise to the database
@@ -78,6 +78,32 @@ namespace Movie_Characters_API.Controllers
             await _franchiseService.AddAsync(franchise);
 
             return CreatedAtAction("GetFranchise", new { id = franchise.Id }, franchise);
+        }
+
+        // GET: api/franchises/5/movies
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpGet("{id}/movies")]
+        public async Task<ActionResult<IEnumerable<Movie>>> GetMoviesInFranchise(int id)
+        {
+            return Ok(await _franchiseService.GetMoviesInFranchiseAsync(id));
+        }
+
+        // GET: api/franchises/5/characters
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpGet("{id}/characters")]
+        public async Task<ActionResult<IEnumerable<Character>>> GetCharactersInFranchise(int id)
+        {
+            return Ok(await _franchiseService.GetCharactersInFranchiseAsync(id));
+        }
+
+        // PUT: api/franchises/5/movies
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("{id}/movies")]
+        public async Task<ActionResult<Franchise>> UpdateMoviesInFranchise(int id, int[] movieIds)
+        {
+            await _franchiseService.UpdateMoviesInFranchiseAsync(id, movieIds);
+
+            return NoContent();
         }
     }
 }

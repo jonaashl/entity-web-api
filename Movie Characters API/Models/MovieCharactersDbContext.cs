@@ -57,14 +57,16 @@ namespace Movie_Characters_API.Models
                     Name = "Harry Potter",
                     Alias = "The boy who lived",
                     Gender = "Male",
-                    Picture = "https://www.imdb.com/title/tt0241527/mediaviewer/rm2113437952"
+                    Picture = "https://www.imdb.com/title/tt0241527/mediaviewer/rm2113437952",
+                    FranchiseId = 1
                 },
                 new Character()
                 {
                     Id = 2,
                     Name = "Hermoine Granger",
                     Gender = "Female",
-                    Picture = "https://www.imdb.com/title/tt0241527/mediaviewer/rm2923487745/"
+                    Picture = "https://www.imdb.com/title/tt0241527/mediaviewer/rm2923487745/",
+                    FranchiseId = 1
                 },
                 new Character()
                 {
@@ -72,14 +74,16 @@ namespace Movie_Characters_API.Models
                     Name = "Horace Slughorn",
                     Alias = "Professor Slughorn",
                     Gender = "Male",
-                    Picture = "https://www.imdb.com/title/tt0417741/mediaviewer/rm1934071552"
+                    Picture = "https://www.imdb.com/title/tt0417741/mediaviewer/rm1934071552",
+                    FranchiseId = 1
                 },
                 new Character()
                 {
                     Id = 4,
                     Name = "Frodo Baggins",
                     Gender = "Male",
-                    Picture = "https://www.imdb.com/title/tt0120737/mediaviewer/rm2645131264"
+                    Picture = "https://www.imdb.com/title/tt0120737/mediaviewer/rm2645131264",
+                    FranchiseId = 2
                 },
                 new Character()
                 {
@@ -87,7 +91,8 @@ namespace Movie_Characters_API.Models
                     Name = "Aragorn",
                     Alias = "Strider",
                     Gender = "Male",
-                    Picture = "https://www.imdb.com/title/tt0120737/mediaviewer/rm2368970240"
+                    Picture = "https://www.imdb.com/title/tt0120737/mediaviewer/rm2368970240",
+                    FranchiseId = 2
                 }
             );
 
