@@ -19,6 +19,7 @@ namespace Movie_Characters_API.Models
         [StringLength(250)]
         public string Picture { get; set; } = null!; // URL to image
         public virtual ICollection<Movie> Movies { get; set; } = new HashSet<Movie>();
+        public int FranchiseId { get; set; }
 
     }
 }

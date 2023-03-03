@@ -6,5 +6,6 @@ namespace Movie_Characters_API.Services.Franchises
     {
         Task UpdateMoviesInFranchiseAsync(int franchiseId, int[] movieIds);
         Task<ICollection<Movie>> GetMoviesInFranchiseAsync(int franchiseId);
+        Task<object?> GetCharactersInFranchiseAsync(int franchiseId);
     }
 }

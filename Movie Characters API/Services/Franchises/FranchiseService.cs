@@ -28,6 +28,15 @@ namespace Movie_Characters_API.Services.Franchises
 
         public async Task<Franchise?> GetByIdAsync(int id) => await _context.Franchises.FindAsync(id);
 
+        public async Task<ICollection<Character>> GetCharactersInFranchiseAsync(int franchiseId)
+        {
+            if (!await FranchiseExistsAsync(franchiseId)) throw new Exception("No franchise with that ID.");
+
+            return await _context.Characters
+                .Where(c => c.FranchiseId == franchiseId)
+                .ToListAsync();
+        }
+
         public async Task<ICollection<Movie>> GetMoviesInFranchiseAsync(int franchiseId)
         {
             if (!await FranchiseExistsAsync(franchiseId)) throw new Exception("No franchise with that ID.");
