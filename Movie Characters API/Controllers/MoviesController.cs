@@ -52,12 +52,13 @@ namespace Movie_Characters_API.Controllers
             return CreatedAtAction("GetMovie", new { id = movie.Id }, movie);
         }
 
-        //// GET: api/movies/5/characters
-        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        //[HttpGet("{id}/characters")]
-        //public async Task<ActionResult<IEnumerable<Character>>> GetCharactersInMovie(int id) {
-        //    return await _movieService.GetCharactersInMovieAsync(id);
-        //}
+        // GET: api/movies/5/characters
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpGet("{id}/characters")]
+        public async Task<ActionResult<IEnumerable<Character>>> GetCharactersInMovie(int movieId)
+        {
+            return Ok(await _movieService.GetCharactersInMovieAsync(movieId));
+        }
 
         // PUT: api/movies/5/characters
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

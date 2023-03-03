@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Movie_Characters_API.Models;
 using Movie_Characters_API.Services.Franchises;
-using Movie_Characters_API.Models;
 
 namespace Movie_Characters_API.Controllers
 {

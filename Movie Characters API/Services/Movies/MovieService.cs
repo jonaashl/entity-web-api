@@ -29,6 +29,15 @@ namespace Movie_Characters_API.Services.Movies
 
         public async Task<Movie?> GetByIdAsync(int id) => await _context.Movies.FindAsync(id);
 
+        public async Task<ICollection<Character>> GetCharactersInMovieAsync(int movieId)
+        {
+            if (!await MovieExistsAsync(movieId)) throw new Exception("No movie with that ID.");
+
+            var movie = await _context.Movies.FindAsync(movieId);
+
+            return movie.Characters.ToList();
+        }
+
         public async Task<Movie> UpdateAsync(Movie movie)
         {
             _context.Entry(movie).State = EntityState.Modified;
@@ -38,14 +47,16 @@ namespace Movie_Characters_API.Services.Movies
 
         public async Task UpdateCharactersInMovieAsync(int movieId, int[] characterIds)
         {
+            if (!await MovieExistsAsync(movieId)) throw new Exception("No movie with that ID.");
             // Get the movie from the database
-            var movie = await _context.Movies.FindAsync(movieId) ?? throw new Exception("No movie with that ID.");
 
             List<Character> characters = characterIds
                 .ToList()
                 .Select(characterIds => _context.Characters
                 .Where(c => c.Id == characterIds).First())
                 .ToList();
+
+            var movie = await _context.Movies.FindAsync(movieId);
 
             movie.Characters = characters;
             _context.Entry(movie).State = EntityState.Modified;
