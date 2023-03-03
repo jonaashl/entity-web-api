@@ -42,7 +42,7 @@ namespace Movie_Characters_API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<CharacterDTO>> GetCharacter(int id)
         {
-            var character = Ok(await _characterService.GetByIdAsync(id));
+            var character = await _characterService.GetByIdAsync(id);
 
             if (character == null) return NotFound();
 
@@ -55,17 +55,17 @@ namespace Movie_Characters_API.Controllers
         /// Update / Override a character in the DB
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="character"></param>
+        /// <param name="characterDTO"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCharacter(int id, Character character)
+        public async Task<IActionResult> PutCharacter(int id, CharacterPutDTO characterDTO)
         {
-            if (id != character.Id)
+            if (id != characterDTO.Id)
             {
                 return BadRequest();
             }
 
-            await _characterService.UpdateAsync(character);
+            await _characterService.UpdateAsync(_mapper.Map<Character>(characterDTO));
 
             return NoContent();
         }
@@ -75,14 +75,23 @@ namespace Movie_Characters_API.Controllers
         /// <summary>
         /// Add a new character to the DB
         /// </summary>
-        /// <param name="character"></param>
+        /// <param name="characterPostDTO"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult<Character>> PostCharacter(Character character)
+        public async Task<IActionResult> PostCharacter(CharacterPostDTO characterPostDTO)
         {
+            var character = _mapper.Map<Character>(characterPostDTO);
             await _characterService.AddAsync(character);
 
-            return CreatedAtAction("GetMovie", new { id = character.Id }, character);
+            return CreatedAtAction("GetCharacter", new { id = character.Id }, character);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCharacter(int id)
+        {
+            await _characterService.Delete(id);
+
+            return NoContent();
         }
     }
 }

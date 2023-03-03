@@ -11,8 +11,7 @@ namespace Movie_Characters_API.Profiles
             CreateMap<Franchise, FranchiseDTO>()
                 .ForMember(
                 dto => dto.Movies,
-                opt => opt.MapFrom(f => f.Movies.Select(m => m.Id))
-                );
+                opt => opt.MapFrom(f => f.Movies.Select(m => m.Id).ToList()));
             CreateMap<FranchisePutDTO, Franchise>();
             CreateMap<FranchisePostDTO, Franchise>();
 

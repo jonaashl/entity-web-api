@@ -4,6 +4,6 @@
     {
         public int Id { get; set; }
         public string Name { get; set; } = null!;
-        public List<int>? Movies { get; set; }
+        public List<int> Movies { get; set; } = null!;
     }
 }
