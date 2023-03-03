@@ -15,7 +15,7 @@ namespace Movie_Characters_API.Models
         public int Id { get; set; }
         [Required]
         [StringLength(50)]
-        public string MovieTitle { get; set; } = null!;
+        public string Title { get; set; } = null!;
         [StringLength(50)]
         public string? Genre { get; set; }
         public int? ReleaseYear { get; set; }
