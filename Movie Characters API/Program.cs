@@ -16,7 +16,6 @@ namespace Movie_Characters_API
             var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
 
-
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
@@ -26,7 +25,7 @@ namespace Movie_Characters_API
             builder.Services.AddScoped<IMovieService, MovieService>();
             builder.Services.AddScoped<ICharacterService, CharacterService>();
             builder.Services.AddScoped<IFranchiseService, FranchiseService>();
-
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen( options =>
@@ -39,7 +38,7 @@ namespace Movie_Characters_API
                     Contact = new OpenApiContact
                     {
                         Name = "J&S",
-                        Url = new Uri("https://gitlab.com/jonashl"),
+                        Url = new Uri("https://gitlab.com/stommeras/back-end-assignment-3"),
                     },
                     License = new OpenApiLicense
                     {

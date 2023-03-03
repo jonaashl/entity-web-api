@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Movie_Characters_API.Models;
+using Movie_Characters_API.Models.DTOs.CharacterDTOs;
 using Movie_Characters_API.Services.Characters;
 using System.Net.Mime;
 
@@ -13,10 +15,12 @@ namespace Movie_Characters_API.Controllers
     public class CharactersController : ControllerBase
     {
         private readonly ICharacterService _characterService;
+        private readonly IMapper _mapper;
 
-        public CharactersController(ICharacterService characterService)
+        public CharactersController(ICharacterService characterService, IMapper mapper)
         {
             _characterService = characterService;
+            _mapper = mapper;
         }
 
         // GET: api/Characters
@@ -34,13 +38,13 @@ namespace Movie_Characters_API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public async Task<ActionResult<Character>> GetCharacter(int id)
+        public async Task<ActionResult<CharacterDTO>> GetCharacter(int id)
         {
             var character = Ok(await _characterService.GetByIdAsync(id));
 
             if (character == null) return NotFound();
 
-            return character;
+            return Ok(_mapper.Map<CharacterDTO>(character));
         }
 
         // PUT: api/Characters/5
