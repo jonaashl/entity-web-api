@@ -4,6 +4,7 @@ using Movie_Characters_API.Models;
 using Movie_Characters_API.Services.Characters;
 using Movie_Characters_API.Services.Franchises;
 using Movie_Characters_API.Services.Movies;
+using System.Reflection;
 
 namespace Movie_Characters_API
 {
@@ -12,6 +13,9 @@ namespace Movie_Characters_API
 
         public static void Main(string[] args)
         {
+            var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+
 
             var builder = WebApplication.CreateBuilder(args);
 
@@ -43,6 +47,7 @@ namespace Movie_Characters_API
                         Url = new Uri("https://example.com/license"),
                     }
                 });
+                options.IncludeXmlComments(xmlPath);
             });
 
             var app = builder.Build();
