@@ -51,5 +51,10 @@ namespace Movie_Characters_API.Services.Franchises
 
             await _context.SaveChangesAsync();
         }
+
+        private async Task<bool> FranchiseExistsAsync(int id)
+        {
+            return await _context.Franchises.AnyAsync(f => f.Id == id);
+        }
     }
 }

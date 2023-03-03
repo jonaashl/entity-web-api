@@ -34,5 +34,10 @@ namespace Movie_Characters_API.Services.Characters
             await _context.SaveChangesAsync();
             return entity;
         }
+
+        private async Task<bool> CharacterExistsAsync(int id)
+        {
+            return await _context.Characters.AnyAsync(c => c.Id == id);
+        }
     }
 }
