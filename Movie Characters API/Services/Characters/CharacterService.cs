@@ -26,7 +26,7 @@ namespace Movie_Characters_API.Services.Characters
 
         public async Task<IEnumerable<Character>> GetAllAsync() => await _context.Characters.ToListAsync();
 
-        public async Task<Character> GetByIdAsync(int id) => await _context.Characters.FindAsync(id);
+        public async Task<Character?> GetByIdAsync(int id) => await _context.Characters.FindAsync(id);
 
         public async Task<Character> UpdateAsync(Character entity)
         {
