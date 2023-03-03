@@ -1,13 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Franchise_Characters_API.Models;
 using Movie_Characters_API.Services.Franchises;
 using Movie_Characters_API.Models;
+using System.Net.Mime;
 
 namespace Movie_Characters_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ApiConventionType(typeof(DefaultApiConventions))]
+    [Produces(MediaTypeNames.Application.Json)]
+    [Consumes(MediaTypeNames.Application.Json)]
     public class FranchisesController : ControllerBase
     {
         private readonly IFranchiseService _franchiseService;

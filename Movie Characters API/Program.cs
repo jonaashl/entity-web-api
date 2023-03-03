@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using Movie_Characters_API.Models;
 using Movie_Characters_API.Services.Characters;
 using Movie_Characters_API.Services.Franchises;
@@ -17,14 +18,32 @@ namespace Movie_Characters_API
             // Add services to the container.
             builder.Services.AddControllers();
             builder.Services.AddDbContext<MovieCharactersDbContext>(
-                opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("steffen")));
+                opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("default")));
             builder.Services.AddScoped<IMovieService, MovieService>();
             builder.Services.AddScoped<ICharacterService, CharacterService>();
             builder.Services.AddScoped<IFranchiseService, FranchiseService>();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen( options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Movie Characters API",
+                    Description = "API to manage movies, franchises and their characters",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "J&S",
+                        Url = new Uri("https://gitlab.com/jonashl"),
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "Use under MIT",
+                        Url = new Uri("https://example.com/license"),
+                    }
+                });
+            });
 
             var app = builder.Build();
 

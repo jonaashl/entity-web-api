@@ -1,11 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using Movie_Characters_API.Models;
 using Movie_Characters_API.Services.Movies;
+using System.Net.Mime;
 
 namespace Movie_Characters_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ApiConventionType(typeof(DefaultApiConventions))]
+    [Produces(MediaTypeNames.Application.Json)]
+    [Consumes(MediaTypeNames.Application.Json)]
+
     public class MoviesController : ControllerBase
     {
         private readonly IMovieService _movieService;

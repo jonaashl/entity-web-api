@@ -1,11 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Movie_Characters_API.Models;
 using Movie_Characters_API.Services.Characters;
+using System.Net.Mime;
 
 namespace Movie_Characters_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ApiConventionType(typeof(DefaultApiConventions))]
+    [Produces(MediaTypeNames.Application.Json)]
+    [Consumes(MediaTypeNames.Application.Json)]
     public class CharactersController : ControllerBase
     {
         private readonly ICharacterService _characterService;
