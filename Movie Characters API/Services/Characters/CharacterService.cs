@@ -19,9 +19,14 @@ namespace Movie_Characters_API.Services.Characters
             return entity;
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            if (!await CharacterExistsAsync(id)) throw new Exception("No character with that ID.");
+
+            var character = await _context.Characters.FindAsync(id);
+
+            _context.Characters.Remove(character);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Character>> GetAllAsync() => await _context.Characters.ToListAsync();

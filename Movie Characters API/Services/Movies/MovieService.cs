@@ -20,9 +20,14 @@ namespace Movie_Characters_API.Services.Movies
             return movie;
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            if (!await MovieExistsAsync(id)) throw new Exception("No movie with that ID.");
+
+            var movie = await _context.Movies.FindAsync(id);
+            
+            _context.Movies.Remove(movie);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Movie>> GetAllAsync() => await _context.Movies.ToListAsync();

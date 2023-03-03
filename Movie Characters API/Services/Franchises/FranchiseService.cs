@@ -19,9 +19,14 @@ namespace Movie_Characters_API.Services.Franchises
             return entity;
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            if (!await FranchiseExistsAsync(id)) throw new Exception("No franchise with that ID.");
+
+            var franchise = await _context.Franchises.FindAsync(id);
+
+            _context.Franchises.Remove(franchise);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Franchise>> GetAllAsync() => await _context.Franchises.ToListAsync();
