@@ -5,13 +5,12 @@ namespace Movie_Characters_API.Models
 {
     public class Franchise
     {
-        [Key]
         [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; } // Autoincremented ID
+        public int Id { get; set; }
+        [Required]
         [StringLength(50)]
         public string Name { get; set; } = null!;
-        public string Description { get; set; } = null!;
+        public string? Description { get; set; }
         public virtual ICollection<Movie> Movies { get; set; } = new HashSet<Movie>();
     }
 }
