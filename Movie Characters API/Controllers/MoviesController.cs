@@ -22,6 +22,10 @@ namespace Movie_Characters_API.Controllers
         }
 
         // GET: api/Movies
+        /// <summary>
+        /// Get all the movies in the database
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Movie>>> GetMovies() => Ok(await _movieService.GetAllAsync());
 
