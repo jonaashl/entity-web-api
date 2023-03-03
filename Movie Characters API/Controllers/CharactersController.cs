@@ -7,7 +7,7 @@ using System.Net.Mime;
 
 namespace Movie_Characters_API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/characters")]
     [ApiController]
     [ApiConventionType(typeof(DefaultApiConventions))]
     [Produces(MediaTypeNames.Application.Json)]
@@ -23,15 +23,17 @@ namespace Movie_Characters_API.Controllers
             _mapper = mapper;
         }
 
-        // GET: api/Characters
+        // GET: api/characters
         /// <summary>
         /// Get all the characters in a database
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Character>>> GetCharacters() => Ok(await _characterService.GetAllAsync());
+        public async Task<ActionResult<IEnumerable<CharacterDTO>>> GetCharacters() => Ok(
+            _mapper.Map<List<CharacterDTO>>(
+            await _characterService.GetAllAsync()));
 
-        // GET: api/Characters/5
+        // GET: api/characters/5
         /// <summary>
         /// get a character by their Id
         /// </summary>
@@ -47,7 +49,7 @@ namespace Movie_Characters_API.Controllers
             return Ok(_mapper.Map<CharacterDTO>(character));
         }
 
-        // PUT: api/Characters/5
+        // PUT: api/characters/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         /// <summary>
         /// Update / Override a character in the DB
@@ -68,7 +70,7 @@ namespace Movie_Characters_API.Controllers
             return NoContent();
         }
 
-        // POST: api/Characters
+        // POST: api/characters
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         /// <summary>
         /// Add a new character to the DB
