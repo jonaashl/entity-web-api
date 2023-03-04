@@ -86,6 +86,11 @@ namespace Movie_Characters_API.Controllers
             return CreatedAtAction("GetCharacter", new { id = character.Id }, character);
         }
 
+        /// <summary>
+        /// Delete a character by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCharacter(int id)
         {
