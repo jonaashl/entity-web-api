@@ -5,6 +5,11 @@ namespace Movie_Characters_API.Models
 {
     public class Character
     {
+        public Character()
+        {
+            Movies = new HashSet<Movie>();
+        }
+
         [Required]
         public int Id { get; set; }
         [Required]
@@ -16,7 +21,7 @@ namespace Movie_Characters_API.Models
         public string? Gender { get; set; }
         [StringLength(250)]
         public string? Picture { get; set; } // URL to picture
-        public virtual ICollection<Movie> Movies { get; set; } = new HashSet<Movie>();
+        public virtual ICollection<Movie> Movies { get; set; }
         public int? FranchiseId { get; set; }
     }
 }

@@ -23,15 +23,29 @@ namespace Movie_Characters_API.Services.Characters
         {
             if (!await CharacterExistsAsync(id)) throw new Exception("No character with that ID.");
 
-            var character = await _context.Characters.FindAsync(id);
+            var character = await _context.Characters
+                .Where(c => c.Id == id)
+                .FirstAsync();
 
             _context.Characters.Remove(character);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Character>> GetAllAsync() => await _context.Characters.ToListAsync();
+        public async Task<IEnumerable<Character>> GetAllAsync()
+        {
+            return await _context.Characters
+                .Include(c => c.Movies)
+                .ToListAsync();
+        }
 
-        public async Task<Character?> GetByIdAsync(int id) => await _context.Characters.FindAsync(id);
+        public async Task<Character?> GetByIdAsync(int id)
+        {
+            if (!await CharacterExistsAsync(id)) throw new Exception("No character with that ID.");
+
+            return await _context.Characters
+                .Where(c => c.Id == id)
+                .FirstAsync();
+        }
 
         public async Task<Character> UpdateAsync(Character entity)
         {

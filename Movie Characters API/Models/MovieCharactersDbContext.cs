@@ -18,7 +18,7 @@ namespace Movie_Characters_API.Models
                 new Movie()
                 {
                     Id = 1,
-                    MovieTitle = "Harry Potter and the Philosopher's Stone",
+                    Title = "Harry Potter and the Philosopher's Stone",
                     Genre = "Adventure, Family, Fantasy",
                     ReleaseYear = 2001,
                     Director = "Chris Colombus",
@@ -29,7 +29,7 @@ namespace Movie_Characters_API.Models
                 new Movie()
                 {
                     Id = 2,
-                    MovieTitle = "Harry Potter and the Half-Blood Prince",
+                    Title = "Harry Potter and the Half-Blood Prince",
                     Genre = "Action, Adventure, Family, Fantasy, Mystery",
                     ReleaseYear = 2009,
                     Director = "David Yates",
@@ -40,7 +40,7 @@ namespace Movie_Characters_API.Models
                 new Movie()
                 {
                     Id = 3,
-                    MovieTitle = "The Lord of the Rings: The Fellowship of the Ring",
+                    Title = "The Lord of the Rings: The Fellowship of the Ring",
                     Genre = "Action, Adventure, Drama, Fantasy",
                     ReleaseYear = 2001,
                     Director = "Peter Jackson",
