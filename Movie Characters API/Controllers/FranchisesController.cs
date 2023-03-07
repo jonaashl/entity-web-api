@@ -26,9 +26,9 @@ namespace Movie_Characters_API.Controllers
             _mapper = mapper;
         }
 
-        // GET: api/franchises
+        // GET: api/v1/franchises
         /// <summary>
-        /// Get all franchises in the database
+        /// Get all franchises
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -40,9 +40,9 @@ namespace Movie_Characters_API.Controllers
                 await _franchiseService.GetAllAsync()));
         }
 
-        // GET: api/franchises/5
+        // GET: api/v1/franchises/5
         /// <summary>
-        /// Get a specific database by their Id
+        /// Get a franchise by Id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -56,10 +56,9 @@ namespace Movie_Characters_API.Controllers
             return Ok(_mapper.Map<FranchiseDTO>(franchise));
         }
 
-        // PUT: api/franchises/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // PUT: api/v1/franchises/5
         /// <summary>
-        /// Update / Override a franchise in the database
+        /// Update a franchise
         /// </summary>
         /// <param name="id"></param>
         /// <param name="franchiseDTO"></param>
@@ -77,10 +76,9 @@ namespace Movie_Characters_API.Controllers
             return NoContent();
         }
 
-        // POST: api/franchises
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // POST: api/v1/franchises
         /// <summary>
-        /// Add a new franchise to the database
+        /// Add a new franchise
         /// </summary>
         /// <param name="franchisePostDTO"></param>
         /// <returns></returns>
@@ -93,8 +91,7 @@ namespace Movie_Characters_API.Controllers
             return CreatedAtAction("GetFranchise", new { id = franchise.Id }, franchise);
         }
 
-        // GET: api/franchises/5/movies
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // GET: api/v1/franchises/5/movies
         /// <summary>
         /// Get all movies in a franchise
         /// </summary>
@@ -108,10 +105,9 @@ namespace Movie_Characters_API.Controllers
                 await _franchiseService.GetMoviesInFranchiseAsync(id)));
         }
 
-        // GET: api/franchises/5/characters
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // GET: api/v1/franchises/5/characters
         /// <summary>
-        /// Get the Characters in a franchise
+        /// Get all characters in a franchise
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -123,8 +119,7 @@ namespace Movie_Characters_API.Controllers
                 await _franchiseService.GetCharactersInFranchiseAsync(id)));
         }
 
-        // PUT: api/franchises/5/movies
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // PUT: api/v1/franchises/5/movies
         /// <summary>
         /// Update what movies are in a franchise
         /// </summary>

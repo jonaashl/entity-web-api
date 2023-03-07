@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Movie_Characters_API.Models;
 
@@ -11,9 +12,11 @@ using Movie_Characters_API.Models;
 namespace Movie_Characters_API.Migrations
 {
     [DbContext(typeof(MovieCharactersDbContext))]
-    partial class MovieCharactersDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230307131032_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -206,17 +209,17 @@ namespace Movie_Characters_API.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("MovieTitle")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<string>("Picture")
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
                     b.Property<int?>("ReleaseYear")
                         .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Trailer")
                         .HasMaxLength(250)
@@ -235,9 +238,9 @@ namespace Movie_Characters_API.Migrations
                             Director = "Chris Colombus",
                             FranchiseId = 1,
                             Genre = "Adventure, Family, Fantasy",
-                            MovieTitle = "Harry Potter and the Philosopher's Stone",
                             Picture = "https://www.imdb.com/title/tt0241527/mediaviewer/rm2105413120/",
                             ReleaseYear = 2001,
+                            Title = "Harry Potter and the Philosopher's Stone",
                             Trailer = "https://www.imdb.com/video/vi3115057433/?playlistId=tt0241527"
                         },
                         new
@@ -246,9 +249,9 @@ namespace Movie_Characters_API.Migrations
                             Director = "David Yates",
                             FranchiseId = 1,
                             Genre = "Action, Adventure, Family, Fantasy, Mystery",
-                            MovieTitle = "Harry Potter and the Half-Blood Prince",
                             Picture = "https://www.imdb.com/title/tt0417741/mediaviewer/rm282560512/",
                             ReleaseYear = 2009,
+                            Title = "Harry Potter and the Half-Blood Prince",
                             Trailer = "https://www.imdb.com/video/vi1061421849/?playlistId=tt0417741"
                         },
                         new
@@ -257,9 +260,9 @@ namespace Movie_Characters_API.Migrations
                             Director = "Peter Jackson",
                             FranchiseId = 2,
                             Genre = "Action, Adventure, Drama, Fantasy",
-                            MovieTitle = "The Lord of the Rings: The Fellowship of the Ring",
                             Picture = "https://www.imdb.com/title/tt0120737/mediaviewer/rm3592958976/",
                             ReleaseYear = 2001,
+                            Title = "The Lord of the Rings: The Fellowship of the Ring",
                             Trailer = "https://www.imdb.com/video/vi684573465/?playlistId=tt0120737"
                         });
                 });

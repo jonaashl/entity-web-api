@@ -27,9 +27,9 @@ namespace Movie_Characters_API.Controllers
             _mapper = mapper;
         }
 
-        // GET: api/movies
+        // GET: api/v1/movies
         /// <summary>
-        /// Get all the movies in the database
+        /// Get all the movies
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -40,9 +40,9 @@ namespace Movie_Characters_API.Controllers
                 await _movieService.GetAllAsync()));
         }
 
-        // GET: api/movies/5
+        // GET: api/v1/movies/5
         /// <summary>
-        /// Get movie by id
+        /// Get movie by Id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -56,10 +56,10 @@ namespace Movie_Characters_API.Controllers
             return Ok(_mapper.Map<MovieDTO>(movie));
         }
 
-        // PUT: api/movies/5
+        // PUT: api/v1/movies/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         /// <summary>
-        /// Override / update a movie
+        /// Update a movie
         /// </summary>
         /// <param name="id"></param>
         /// <param name="movieDTO"></param>
@@ -76,7 +76,7 @@ namespace Movie_Characters_API.Controllers
             return NoContent();
         }
 
-        // POST: api/movies
+        // POST: api/v1/movies
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         /// <summary>
         /// Add a new movie
@@ -92,10 +92,10 @@ namespace Movie_Characters_API.Controllers
             return CreatedAtAction("GetMovie", new { id = movie.Id }, movie);
         }
 
-        // GET: api/movies/5/characters
+        // GET: api/v1/movies/5/characters
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         /// <summary>
-        /// Get the characters that play in a movie
+        /// Get all characters in a movie
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -107,10 +107,10 @@ namespace Movie_Characters_API.Controllers
                 await _movieService.GetCharactersInMovieAsync(id)));
         }
 
-        // PUT: api/movies/5/characters
+        // PUT: api/v1/movies/5/characters
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         /// <summary>
-        /// Update the characters that play in a movie
+        /// Update what characters are in a movie
         /// </summary>
         /// <param name="id"></param>
         /// <param name="characterIds"></param>

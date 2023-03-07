@@ -46,13 +46,13 @@ namespace Movie_Characters_API.Services.Franchises
         {
             if (!await FranchiseExistsAsync(franchiseId)) throw new Exception("No franchise with that ID.");
 
-            var franchise = await _context.Franchises.FindAsync(franchiseId);
+            //var franchise = await _context.Franchises.FindAsync(franchiseId);
 
-            return franchise.Movies.ToList();
+            //return franchise.Movies.ToList();
 
-            //return await _context.Movies
-            //    .Where(m => m.FranchiseId == franchiseId)
-            //    .ToListAsync();
+            return await _context.Movies
+                .Where(m => m.FranchiseId == franchiseId)
+                .ToListAsync();
         }
 
         public async Task<Franchise> UpdateAsync(Franchise entity)

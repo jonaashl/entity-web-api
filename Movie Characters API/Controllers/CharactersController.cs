@@ -23,9 +23,9 @@ namespace Movie_Characters_API.Controllers
             _mapper = mapper;
         }
 
-        // GET: api/characters
+        // GET: api/v1/characters
         /// <summary>
-        /// Get all the characters in a database
+        /// Get all the characters
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -33,9 +33,9 @@ namespace Movie_Characters_API.Controllers
             _mapper.Map<List<CharacterDTO>>(
             await _characterService.GetAllAsync()));
 
-        // GET: api/characters/5
+        // GET: api/v1/characters/5
         /// <summary>
-        /// get a character by their Id
+        /// Get a character by Id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -49,10 +49,10 @@ namespace Movie_Characters_API.Controllers
             return Ok(_mapper.Map<CharacterDTO>(character));
         }
 
-        // PUT: api/characters/5
+        // PUT: api/v1/characters/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         /// <summary>
-        /// Update / Override a character in the DB
+        /// Update a character
         /// </summary>
         /// <param name="id"></param>
         /// <param name="characterDTO"></param>
@@ -70,10 +70,10 @@ namespace Movie_Characters_API.Controllers
             return NoContent();
         }
 
-        // POST: api/characters
+        // POST: api/v1/characters
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         /// <summary>
-        /// Add a new character to the DB
+        /// Add a new character
         /// </summary>
         /// <param name="characterPostDTO"></param>
         /// <returns></returns>

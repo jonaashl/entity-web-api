@@ -39,8 +39,7 @@ namespace Movie_Characters_API.Services.Movies
             if (!await MovieExistsAsync(movieId)) throw new Exception("No movie with that ID.");
 
             var movie = await _context.Movies.FindAsync(movieId);
-
-            return movie.Characters.ToList();
+            return movie.Characters;
         }
 
         public async Task<Movie> UpdateAsync(Movie movie)

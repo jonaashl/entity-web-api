@@ -49,7 +49,7 @@ namespace Movie_Characters_API.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    MovieTitle = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Genre = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ReleaseYear = table.Column<int>(type: "int", nullable: true),
                     Director = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -114,12 +114,12 @@ namespace Movie_Characters_API.Migrations
 
             migrationBuilder.InsertData(
                 table: "Movies",
-                columns: new[] { "Id", "Director", "FranchiseId", "Genre", "MovieTitle", "Picture", "ReleaseYear", "Trailer" },
+                columns: new[] { "Id", "Director", "FranchiseId", "Genre", "Picture", "ReleaseYear", "Title", "Trailer" },
                 values: new object[,]
                 {
-                    { 1, "Chris Colombus", 1, "Adventure, Family, Fantasy", "Harry Potter and the Philosopher's Stone", "https://www.imdb.com/title/tt0241527/mediaviewer/rm2105413120/", 2001, "https://www.imdb.com/video/vi3115057433/?playlistId=tt0241527" },
-                    { 2, "David Yates", 1, "Action, Adventure, Family, Fantasy, Mystery", "Harry Potter and the Half-Blood Prince", "https://www.imdb.com/title/tt0417741/mediaviewer/rm282560512/", 2009, "https://www.imdb.com/video/vi1061421849/?playlistId=tt0417741" },
-                    { 3, "Peter Jackson", 2, "Action, Adventure, Drama, Fantasy", "The Lord of the Rings: The Fellowship of the Ring", "https://www.imdb.com/title/tt0120737/mediaviewer/rm3592958976/", 2001, "https://www.imdb.com/video/vi684573465/?playlistId=tt0120737" }
+                    { 1, "Chris Colombus", 1, "Adventure, Family, Fantasy", "https://www.imdb.com/title/tt0241527/mediaviewer/rm2105413120/", 2001, "Harry Potter and the Philosopher's Stone", "https://www.imdb.com/video/vi3115057433/?playlistId=tt0241527" },
+                    { 2, "David Yates", 1, "Action, Adventure, Family, Fantasy, Mystery", "https://www.imdb.com/title/tt0417741/mediaviewer/rm282560512/", 2009, "Harry Potter and the Half-Blood Prince", "https://www.imdb.com/video/vi1061421849/?playlistId=tt0417741" },
+                    { 3, "Peter Jackson", 2, "Action, Adventure, Drama, Fantasy", "https://www.imdb.com/title/tt0120737/mediaviewer/rm3592958976/", 2001, "The Lord of the Rings: The Fellowship of the Ring", "https://www.imdb.com/video/vi684573465/?playlistId=tt0120737" }
                 });
 
             migrationBuilder.InsertData(
