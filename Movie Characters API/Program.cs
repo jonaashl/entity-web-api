@@ -43,7 +43,7 @@ namespace Movie_Characters_API
                     License = new OpenApiLicense
                     {
                         Name = "Use under MIT",
-                        Url = new Uri("https://example.com/license"),
+                        Url = new Uri("https://opensource.org/license/mit/"),
                     }
                 });
                 options.IncludeXmlComments(xmlPath);
