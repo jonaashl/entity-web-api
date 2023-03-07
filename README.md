@@ -3,15 +3,21 @@
 
 > Web API with Entity framework.
 
-<img src="/assignment3CSHARPer.png" alt="dynamic duo" width=50% heigh=50% />
+<img src="/assignment3CSHARPer.png" alt="a not cursed image" width=50% heigh=50% />
 
 ### 🏠 [Gitlab Homepage](https://gitlab.com/jonashl/backend-assignment-3)
 
+## Install
+
+Open solution in Visual Studio and run the following command in the Package Manager Console.
+
+```
+update-database
+```
 
 ## Usage
 
-EEEEEEEEE
-Have the Chinook database from the assignment installed, and run the solution in Visual Studio to see the test data.
+Connection string to SQL Server Management Studio must be added to `appsettings.json` under `ConnectionStrings`.
 
 ## Authors
 
