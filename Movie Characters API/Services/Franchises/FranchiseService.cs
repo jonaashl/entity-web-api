@@ -19,19 +19,34 @@ namespace Movie_Characters_API.Services.Franchises
             return entity;
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(int franchiseId)
         {
-            if (!await FranchiseExistsAsync(id)) throw new Exception("No franchise with that ID.");
+            if (!await FranchiseExistsAsync(franchiseId)) throw new Exception("No franchise with that ID.");
 
-            var franchise = await _context.Franchises.FindAsync(id);
+            var franchise = await _context.Franchises
+                .Where(f => f.Id == franchiseId)
+                .FirstAsync();
 
             _context.Franchises.Remove(franchise);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Franchise>> GetAllAsync() => await _context.Franchises.ToListAsync();
+        public async Task<IEnumerable<Franchise>> GetAllAsync()
+        {
+            return await _context.Franchises
+                .Include(f => f.Movies)
+                .ToListAsync();
+        }
 
-        public async Task<Franchise?> GetByIdAsync(int id) => await _context.Franchises.FindAsync(id);
+        public async Task<Franchise?> GetByIdAsync(int franchiseId)
+        {
+            if (!await FranchiseExistsAsync(franchiseId)) throw new Exception("No franchise with that ID.");
+
+            return await _context.Franchises
+                .Where(f => f.Id == franchiseId)
+                .Include(f => f.Movies)
+                .FirstAsync();
+        }
 
         public async Task<ICollection<Character>> GetCharactersInFranchiseAsync(int franchiseId)
         {
@@ -60,8 +75,11 @@ namespace Movie_Characters_API.Services.Franchises
 
         public async Task UpdateMoviesInFranchiseAsync(int franchiseId, int[] movieIds)
         {
-            // Get the movie from the database
-            var franchise = await _context.Franchises.FindAsync(franchiseId) ?? throw new Exception("No franchise with that ID.");
+            if (!await FranchiseExistsAsync(franchiseId)) throw new Exception("No franchise with that ID.");
+
+            var franchise = await _context.Franchises
+                .Where(f => f.Id == franchiseId)
+                .FirstAsync();
 
             List<Movie> movies = movieIds
                 .ToList()
