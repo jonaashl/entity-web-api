@@ -122,5 +122,18 @@ namespace Movie_Characters_API.Controllers
 
             return NoContent();
         }
+
+        /// <summary>
+        /// Delete a movie by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteMovie(int id)
+        {
+            await _movieService.Delete(id);
+
+            return NoContent();
+        }
     }
 }

@@ -20,25 +20,46 @@ namespace Movie_Characters_API.Services.Movies
             return movie;
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(int movieId)
         {
-            if (!await MovieExistsAsync(id)) throw new Exception("No movie with that ID.");
+            if (!await MovieExistsAsync(movieId)) throw new Exception("No movie with that ID.");
 
-            var movie = await _context.Movies.FindAsync(id);
-            
+            var movie = await _context.Movies
+                .Where(m => m.Id == movieId)
+                .FirstAsync();
+
             _context.Movies.Remove(movie);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Movie>> GetAllAsync() => await _context.Movies.ToListAsync();
+        public async Task<IEnumerable<Movie>> GetAllAsync()
+        {
+            return await _context.Movies
+                .Include(m => m.Franchise)
+                .Include(m => m.Characters)
+                .ToListAsync();
+        }
 
-        public async Task<Movie?> GetByIdAsync(int id) => await _context.Movies.FindAsync(id);
+        public async Task<Movie?> GetByIdAsync(int movieId)
+        {
+            if (!await MovieExistsAsync(movieId)) throw new Exception("No movie with that ID.");
+
+            return await _context.Movies
+                .Where(m => m.Id == movieId)
+                .Include(m => m.Franchise)
+                .Include(m => m.Characters)
+                .FirstAsync();
+        }
 
         public async Task<ICollection<Character>> GetCharactersInMovieAsync(int movieId)
         {
             if (!await MovieExistsAsync(movieId)) throw new Exception("No movie with that ID.");
 
-            var movie = await _context.Movies.FindAsync(movieId);
+            var movie = await _context.Movies
+                .Where(m => m.Id == movieId)
+                .Include(m => m.Characters)
+                .FirstAsync();
+
             return movie.Characters;
         }
 
@@ -52,7 +73,6 @@ namespace Movie_Characters_API.Services.Movies
         public async Task UpdateCharactersInMovieAsync(int movieId, int[] characterIds)
         {
             if (!await MovieExistsAsync(movieId)) throw new Exception("No movie with that ID.");
-            // Get the movie from the database
 
             List<Character> characters = characterIds
                 .ToList()
@@ -60,7 +80,10 @@ namespace Movie_Characters_API.Services.Movies
                 .Where(c => c.Id == characterIds).First())
                 .ToList();
 
-            var movie = await _context.Movies.FindAsync(movieId);
+            var movie = await _context.Movies
+                .Where(m => m.Id == movieId)
+                .Include(m => m.Characters)
+                .FirstAsync();
 
             movie.Characters = characters;
             _context.Entry(movie).State = EntityState.Modified;

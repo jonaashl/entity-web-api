@@ -133,8 +133,9 @@ namespace Movie_Characters_API.Controllers
 
             return NoContent();
         }
+
         /// <summary>
-        /// Delete a Franchise by Id
+        /// Delete a franchise by Id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -145,6 +146,5 @@ namespace Movie_Characters_API.Controllers
 
             return NoContent();
         }
-
     }
 }
