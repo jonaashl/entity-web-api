@@ -10,7 +10,7 @@ using Movie_Characters_API.Models.DTOs.CharacterDTOs;
 
 namespace Movie_Characters_API.Controllers
 {
-    [Route("api/franchises")]
+    [Route("api/v1/franchises")]
     [ApiController]
     [ApiConventionType(typeof(DefaultApiConventions))]
     [Produces(MediaTypeNames.Application.Json)]
@@ -25,7 +25,6 @@ namespace Movie_Characters_API.Controllers
             _franchiseService = franchiseService;
             _mapper = mapper;
         }
-
 
         // GET: api/franchises
         /// <summary>

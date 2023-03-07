@@ -21,7 +21,7 @@ namespace Movie_Characters_API
             // Add services to the container.
             builder.Services.AddControllers();
             builder.Services.AddDbContext<MovieCharactersDbContext>(
-                opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("default")));
+                opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("steffen-hjemme")));
             builder.Services.AddScoped<IMovieService, MovieService>();
             builder.Services.AddScoped<ICharacterService, CharacterService>();
             builder.Services.AddScoped<IFranchiseService, FranchiseService>();

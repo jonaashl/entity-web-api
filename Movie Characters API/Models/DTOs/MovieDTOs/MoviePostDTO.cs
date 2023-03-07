@@ -3,8 +3,5 @@
     public class MoviePostDTO
     {
         public string Title { get; set; } = null!;
-
-
-
     }
 }

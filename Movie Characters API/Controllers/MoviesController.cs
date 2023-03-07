@@ -9,7 +9,7 @@ using System.Net.Mime;
 
 namespace Movie_Characters_API.Controllers
 {
-    [Route("api/movies")]
+    [Route("api/v1/movies")]
     [ApiController]
     [ApiConventionType(typeof(DefaultApiConventions))]
     [Produces(MediaTypeNames.Application.Json)]
@@ -33,10 +33,10 @@ namespace Movie_Characters_API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MoviePutDTO>>> GetMovies()
+        public async Task<ActionResult<IEnumerable<MovieDTO>>> GetMovies()
         {
             return Ok(
-                _mapper.Map<List<MoviePutDTO>>(
+                _mapper.Map<List<MovieDTO>>(
                 await _movieService.GetAllAsync()));
         }
 
@@ -47,13 +47,13 @@ namespace Movie_Characters_API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public async Task<ActionResult<MoviePutDTO>> GetMovie(int id)
+        public async Task<ActionResult<MovieDTO>> GetMovie(int id)
         {
             var movie = await _movieService.GetByIdAsync(id);
 
             if (movie == null) return NotFound();
 
-            return Ok(_mapper.Map<MoviePutDTO>(movie));
+            return Ok(_mapper.Map<MovieDTO>(movie));
         }
 
         // PUT: api/movies/5
